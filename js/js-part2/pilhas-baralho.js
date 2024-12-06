@@ -13,13 +13,11 @@
 // Função para criar um baralho de cartas
 
 let cartas = [];
-let opt = "";
+let opt = 0;
+let texto = "Pilha:\n";
 
-function criaLista(cartas) {
-  return (
-    "Ordem de Atendimento:\n\n" +
-    cartas.map((carta, index) => `${index + 1}° ${carta}`).join("\n")
-  );
+function criarLista(cartas) {
+  return texto;
 }
 
 do {
@@ -30,25 +28,45 @@ do {
   );
   switch (opt) {
     case 0:
+      // sair
       alert("Saindo...");
       break;
     case 1:
+      // inserir carta na pilha
       const newCard = prompt("Digite a carta:");
       if (newCard) {
         cartas.push(newCard.trim());
-        alert(cartas);
+
+        for (let i = cartas.length - 1; i >= 0; i--) {
+          texto += "Posição " + (i + 1) + "° " + cartas[i] + "\n";
+        }
+
+        alert(texto);
       } else {
         alert("Carta inválida!");
       }
       break;
+
     case 2:
-      // remover
-      const x = cartas.pop();
-      alert("Carta: " + x + " apagada!" + "\n" + cartas);
+      // remove cartas
+      if (cartas.length > 0) {
+        alert("Carta: " + cartas.pop() + " apagada!" + "\n" + cartas);
+      } else {
+        alert("Baralho vazio!");
+      }
+
       break;
     case 3:
-      alert(cartas);
+      // consulta cartas
+      if (cartas.length > 0) {
+        alert("Carta: " + cartas);
+      } else {
+        alert("Baralho vazio!");
+      }
+    case 4:
+      //
       break;
+
     default:
       alert("Opção inválida");
       break;
