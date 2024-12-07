@@ -14,10 +14,14 @@
 
 let cartas = [];
 let opt = 0;
-let texto = "Pilha:\n";
+let texto = "";
 
-function criarLista(cartas) {
-  return texto;
+function Listar(cartas) {
+  for (let index = cartas.length - 1; index >= 0; index--) {
+    texto = texto + cartas[index] + "\n";
+  }
+  alert(texto);
+  texto = "";
 }
 
 do {
@@ -36,12 +40,7 @@ do {
       const newCard = prompt("Digite a carta:");
       if (newCard) {
         cartas.push(newCard.trim());
-
-        for (let i = cartas.length - 1; i >= 0; i--) {
-          texto += "Posição " + (i + 1) + "° " + cartas[i] + "\n";
-        }
-
-        alert(texto);
+        alert("Carta: " + newCard + " inserida!");
       } else {
         alert("Carta inválida!");
       }
@@ -50,21 +49,20 @@ do {
     case 2:
       // remove cartas
       if (cartas.length > 0) {
-        alert("Carta: " + cartas.pop() + " apagada!" + "\n" + cartas);
+        let apagada = cartas.pop();
+        alert("Carta: " + apagada + " apagada!");
       } else {
         alert("Baralho vazio!");
       }
-
       break;
+
     case 3:
       // consulta cartas
       if (cartas.length > 0) {
-        alert("Carta: " + cartas);
+        Listar(cartas);
       } else {
         alert("Baralho vazio!");
       }
-    case 4:
-      //
       break;
 
     default:
