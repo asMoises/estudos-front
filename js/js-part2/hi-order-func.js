@@ -10,8 +10,8 @@ function calcular(a, b, op) {
   // como parâmetros para serem utilizados em seu código.
   // Assim, eu uso uma variável para monto a função "OP" usando "A" e "B" como seus parâmetros.
 
-  const resultado = op(a, b); // Veja que esta linha não possui a construção de uma função, apenas a sua chamada.
-  // Assim, para ser executada, ela deve ser construída em outro ponto do programa.
+  const resultado = op(a, b); // Veja que esta linha não possui a construção de uma função, 
+  // apenas a sua chamada. Assim, para ser executada, ela deve ser construída em outro ponto do programa.
 
   return resultado;
 }
