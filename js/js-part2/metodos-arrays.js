@@ -12,19 +12,20 @@ const personagens = [
 // Mapeando um array sem usar Map
 const nomes = []
 for (let i = 0; i < personagens.length; i++) {
-  const personagem = personagens[i]
-  nomes.push(personagem.nome)
+  nomes.push(personagens[i].nome)
 }
 
-console.log(nomes)
+console.log("nomes: "+nomes)
 
 
 // map mais elegante e organizado com hi-order functions
-const nomes_ = personagens.map(function (personagem_) { 
-  return personagem_.nome
+const nomes_ = personagens.map(function (persona) { 
+  return persona.nome
 })
 
-console.log(nomes_)
+console.log("Nomes 2: "+nomes_)
+
+
 
 // Filter com hi-order-func
 // primeiro a forma de filtrar sem o filter
@@ -43,15 +44,13 @@ const orcs_ = personagens.filter(function (pers) {
 
 console.log(orcs_)
 
-// Método reduce para criar algum formato de estrutura de dados
-// a partir de um array
+// Método reduce para criar algum formato de estrutura de dados a partir de um array
+// por exemplo: se eu quiser somar o valor de "nivel" que esta dentro do array
 
-// por exemplo: se eu quiser somar o valor de "nivel"
-// que esta dentro do array
-
-const nivelTotal = personagens.reduce(function(vAcumlado, pers){
-return   vAcumlado+pers.nivel
-}, 0)
+const nivelTotal = personagens.reduce(
+  function (vAcumlado, pers) {
+    return vAcumlado + pers.nivel
+  },0)
 
 console.log(nivelTotal)
 
@@ -75,5 +74,9 @@ const racas = personagens.reduce(function (valorAcumulado, pers) {
 
 console.log(racas)
 
-console.log(typeof (racas))
-
+// ordenando por nivel
+const persona_ = personagens.slice().sort(function (a, b) { 
+  return a.nivel-b.nivel
+})
+console.log(personagens)
+console.log(persona_)
