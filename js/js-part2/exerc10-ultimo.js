@@ -33,6 +33,24 @@ usuário confirme a exclusão da vaga antes de realmente exclui-la.
 let vagas = []
 
 // Functions
+
+// opt 1
+function listarVagas() {
+    // Escrever todas as informações em uma única variável
+    const vagasEmTexto = vagas.reduce(function(textoFinal, vaga, indice) {
+      textoFinal += indice + ". ";
+      // O reduce tem 4 argumentos, o quarto é opcional. 
+      // O indice é o terceiro argumento e vai se relacionar com o indicie dpo array que estao chamando o reduce.
+      textoFinal += vaga.nome;
+      textoFinal += " (" + vaga.candidatos.length + " candidatos)\n";
+  
+      return textoFinal;    
+  }, "") // as aspas vazias indicam o valor inicial da variável texto final.
+
+  alert(vagasEmTexto)
+}
+
+
 function novaVaga() {
   const nome = prompt("Informe um nome para a vaga:")
   const descricao = prompt("Informe um descrição para a vaga:")
@@ -53,19 +71,27 @@ function novaVaga() {
   }
 }
 
-function listarVagas() {
-    const vagasEmTexto = vagas.reduce((textoFinal, vaga, indice) => { // o parametro vaga busca em vagas (que esta chamando reduce)
-    textoFinal += indice + ". "
-    textoFinal += vaga.nome
-      textoFinal += " (" + vaga.candidatos.length + " candidatos)\n" // na função novaVaga a estrutura de dador foi criada com um array vazio, Candidatos.
-      // quando eu criar um candidato ele será colocado nesse array que, ao consultar a vaga, aparecerá a quantidade de candidato aqui.
-      return textoFinal // este texto final é a concatenação dos dados do array vaga, que foi formado pelo recude, vindo de vagas
-      
-  }, "")
 
-  alert(vagasEmTexto)
+
+function exibirVaga() {
+  const entrada_usuario_indice = prompt("Informe o índice da vaga que deseja exibir:")
+  const vaga = vagas[entrada_usuario_indice] // aqui o indice informado pelo usuário mostra a vaga
+  // dentro do array e atribui à variável vaga
+
+  // função anonima dentro do reduce para iterar o array candidatos e concatenar todos os candidatos em uma única variável
+  const candidatosEmTexto = vaga.candidatos.reduce((textoFinal, candidato) => textoFinal + "\n - " + candidato, "")
+
+  alert(
+    "Vaga nº " + entrada_usuario_indice +
+    "\nNome: " + vaga.nome +
+    "\nDescrição: " + vaga.descricao +
+    "\nData limite: " + vaga.dataLimite +
+    "\nQuantidade de candidatos: " + vaga.candidatos.length +
+    "\nCandidatos inscritos:" + candidatosEmTexto
+  )
 }
 
+//listarVagas()
 function myMain() {
   // **********************************************
   const texto = "O que deseja fazer?\n\n" +
@@ -88,7 +114,7 @@ function myMain() {
         novaVaga()
         break;
       case "3":
-      
+      exibirVaga()
         break;
       case "4":
       
