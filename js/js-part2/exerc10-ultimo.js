@@ -30,109 +30,123 @@ usuário confirme a exclusão da vaga antes de realmente exclui-la.
 
 */
 
-let vagas = []
+let vagas = [];
 
 // Functions
+function criarCandidato() {
+  alert("Veja a seguir o número da vaga que deseja cadastrar um candidato.");
+  listarVagas();
+  const indice_vaga = prompt("Informe o índice da vaga:");
 
-// opt 1
-function listarVagas() {
-    // Escrever todas as informações em uma única variável
-    const vagasEmTexto = vagas.reduce(function(textoFinal, vaga, indice) {
-      textoFinal += indice + ". ";
-      // O reduce tem 4 argumentos, o quarto é opcional. 
-      // O indice é o terceiro argumento e vai se relacionar com o indicie dpo array que estao chamando o reduce.
-      textoFinal += vaga.nome;
-      textoFinal += " (" + vaga.candidatos.length + " candidatos)\n";
-  
-      return textoFinal;    
-  }, "") // as aspas vazias indicam o valor inicial da variável texto final.
-
-  alert(vagasEmTexto)
+  vagas.forEach((vaga, indice) => {
+    if (indice == indice_vaga) {
+      const nomeCandidato = prompt("Digite o nome do candidato:");
+      vaga.candidatos.push(nomeCandidato);
+    }
+  });
 }
 
+function listarVagas() {
+  const vagasEmTexto = vagas.reduce(function (textoFinal, vaga, indice) {
+    textoFinal += indice + ". ";
+    textoFinal += vaga.nome;
+    textoFinal += " (" + vaga.candidatos.length + " candidatos)\n";
+
+    return textoFinal;
+  }, "");
+
+  alert(vagasEmTexto);
+}
 
 function novaVaga() {
-  const nome = prompt("Informe um nome para a vaga:")
-  const descricao = prompt("Informe um descrição para a vaga:")
-  const dataLimite = prompt("Informe um data limite (dd/mm/aaaa) para a vaga:")
+  const nome = prompt("Informe um nome para a vaga:");
+  const descricao = prompt("Informe um descrição para a vaga:");
+  const dataLimite = prompt("Informe um data limite (dd/mm/aaaa) para a vaga:");
 
-  const confirmacao = confirm("Deseja criar uma nova vaga com essas informações?\n" +
-    "Nome: " + nome +
-    "\nDescrição: " + descricao +
-    "\nData limite: " + dataLimite
-  )
+  const confirmacao = confirm(
+    "Deseja criar uma nova vaga com essas informações?\n" +
+      "Nome: " +
+      nome +
+      "\nDescrição: " +
+      descricao +
+      "\nData limite: " +
+      dataLimite
+  );
 
   if (confirmacao) {
     // até esta linha o array vagas está vazio e sem formato de dados
-    const novaVaga = { nome, descricao, dataLimite, candidatos: [] }
-    // agora o array vagas possui as strings nome, descr e dataLimite, e um array vazio chamado candidatos 
-    vagas.push(novaVaga)
-    alert("Vaga criada.")
+    const novaVaga = { nome, descricao, dataLimite, candidatos: [] };
+    // agora o array vagas possui as strings nome, descr e dataLimite, e um array vazio chamado candidatos
+    vagas.push(novaVaga);
+    alert("Vaga criada.");
   }
 }
 
-
-
 function exibirVaga() {
-  const entrada_usuario_indice = prompt("Informe o índice da vaga que deseja exibir:")
-  const vaga = vagas[entrada_usuario_indice] // aqui o indice informado pelo usuário mostra a vaga
-  // dentro do array e atribui à variável vaga
+  const entrada_usuario_indice = prompt(
+    "Informe o índice da vaga que deseja exibir:"
+  );
 
-  // função anonima dentro do reduce para iterar o array candidatos e concatenar todos os candidatos em uma única variável
-  const candidatosEmTexto = vaga.candidatos.reduce((textoFinal, candidato) => textoFinal + "\n - " + candidato, "")
+  const vaga = vagas[entrada_usuario_indice];
+  const vagaEmTexto = vaga.candidatos.reduce(
+    (textoFinal, vaga) => textoFinal + "\n - " + vaga,
+    ""
+  );
 
   alert(
-    "Vaga nº " + entrada_usuario_indice +
-    "\nNome: " + vaga.nome +
-    "\nDescrição: " + vaga.descricao +
-    "\nData limite: " + vaga.dataLimite +
-    "\nQuantidade de candidatos: " + vaga.candidatos.length +
-    "\nCandidatos inscritos:" + candidatosEmTexto
-  )
+    "Vaga nº " +
+      entrada_usuario_indice +
+      "\nNome: " +
+      vaga.nome +
+      "\nDescrição: " +
+      vaga.descricao +
+      "\nData limite: " +
+      vaga.dataLimite +
+      "\nQuantidade de candidatos: " +
+      vaga.candidatos.length +
+      "\nCandidatos inscritos:" +
+      vagaEmTexto
+  );
 }
 
-//listarVagas()
 function myMain() {
-  // **********************************************
-  const texto = "O que deseja fazer?\n\n" +
+  const texto =
+    "O que deseja fazer?\n\n" +
     "1 - Listar vagas disponíveis\n" +
     "2 - Criar um nova vaga\n" +
     "3 - Visualizar uma vaga\n" +
     "4 - Inscrever um candidato em uma vaga\n" +
     "5 - Excluir uma vaga\n" +
-    "0 - Sair"
+    "0 - Sair";
 
-  let opt = ""
+  let opt = "";
   do {
-    opt = prompt(texto)
-  
+    opt = prompt(texto);
+
     switch (opt) {
       case "1":
-        listarVagas()
+        listarVagas();
         break;
       case "2":
-        novaVaga()
+        novaVaga();
         break;
       case "3":
-      exibirVaga()
+        exibirVaga();
         break;
       case "4":
-      
+        criarCandidato();
         break;
       case "5":
-      
         break;
       case "0":
-        alert("Saindo...")
+        alert("Saindo...");
         break;
-  
+
       default:
-        alert("Opção Inválida")
+        alert("Opção Inválida");
         break;
     }
-
-  } while (opt !== "0")
-
+  } while (opt !== "0");
 }
 
-myMain()
+myMain();
