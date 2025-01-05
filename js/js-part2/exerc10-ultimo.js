@@ -33,6 +33,36 @@ usuário confirme a exclusão da vaga antes de realmente exclui-la.
 let vagas = [];
 
 // Functions
+
+function excluirVaga() {
+  alert("Veja a seguir o número da vaga que deseja cadastrar um candidato.");
+  listarVagas();
+  const indice_vaga = prompt("Informe o índice da vaga:");
+
+  vagas.forEach((vaga, indice) => {
+    if (indice == indice_vaga) {
+      if (vaga.candidatos.length > 0) {
+        alert(
+          "Existem candidatos inscrito na vaga. Ela não pode ser excluída!"
+        );
+      } else {
+        const confirmacao = confirm(
+          "Deseja excluir vaga: \n" +
+            "Nome: " +
+            vaga.nome +
+            "\nDescrição: " +
+            vaga.descricao
+        );
+
+        if (confirmacao) {
+          const vagaApagada = vagas.splice(indice, 1);
+          alert("A vaga " + vaga.nome + " foi apagada com sucesso!");
+        }
+      }
+    }
+  });
+}
+
 function criarCandidato() {
   alert("Veja a seguir o número da vaga que deseja cadastrar um candidato.");
   listarVagas();
@@ -137,6 +167,7 @@ function myMain() {
         criarCandidato();
         break;
       case "5":
+        excluirVaga();
         break;
       case "0":
         alert("Saindo...");
