@@ -12,15 +12,25 @@ let vagas = [];
 // Listar vagas disponíveis:
 // A opção de listar as vagas deve mostrar o índice, o nome e a quantidade de candidatos inscritos de todas as vagas.
 function listarVagas() {
-  const vagasEmTexto = vagas.reduce(function (textoFinal, vaga, indice) {
-    textoFinal += indice + ". ";
-    textoFinal += vaga.nome;
-    textoFinal += " (" + vaga.candidatos.length + " candidatos)\n";
+  if (vagas.length > 0) {
+    const vagasEmTexto = vagas.reduce(function (textoFinal, vaga, indice) {
+      textoFinal += indice + ". ";
+      textoFinal += vaga.nome;
+      textoFinal += " (" + vaga.candidatos.length + " candidatos)\n";
 
-    return textoFinal;
-  }, "");
+      return textoFinal;
+    }, "");
 
-  alert(vagasEmTexto);
+    alert(vagasEmTexto);
+  } else {
+    const confirmacao = confirm(
+      "Vagas ainda não cadastradas!\nDeseja iniciar um cadastro?"
+    );
+
+    if (confirmacao) {
+      novaVaga();
+    }
+  }
 }
 
 // OPT 2
@@ -39,58 +49,43 @@ function criarCandidato() {
   });
 }
 
-// OPT 3A - polimorfismo
-// Visualizar uma vaga com parametro enviado na chamada:
-function exibirVaga(indice_vaga) {
-  const vaga = vagas[indice_vaga];
-  const vagaEmTexto = vaga.candidatos.reduce(
-    (textoFinal, vaga) => textoFinal + "\n - " + vaga,
-    ""
-  );
-
-  alert(
-    "Vaga nº " +
-      entrada_usuario_indice +
-      "\nNome: " +
-      vaga.nome +
-      "\nDescrição: " +
-      vaga.descricao +
-      "\nData limite: " +
-      vaga.dataLimite +
-      "\nQuantidade de candidatos: " +
-      vaga.candidatos.length +
-      "\nCandidatos inscritos:" +
-      vagaEmTexto
-  );
-}
-
+// OPT 3
+// Visualizar uma vaga
 function exibirVaga() {
-  const entrada_usuario_indice = prompt(
-    "Informe o índice da vaga que deseja exibir:"
-  );
+  if (vagas.length < 1) alert("Não existem vagas cadastradas!");
+  else {
+    let aux = 0;
+    const entrada_usuario_indice = prompt(
+      "Informe o índice da vaga que deseja exibir:"
+    );
 
-  const vaga = vagas[entrada_usuario_indice];
-  const vagaEmTexto = vaga.candidatos.reduce(
-    (textoFinal, vaga) => textoFinal + "\n - " + vaga,
-    ""
-  );
+    // select no array
+    vagas.forEach((e, indice) => {
+      if (indice == entrada_usuario_indice) {
+        const vaga = vagas[entrada_usuario_indice];
+        const vagaEmTexto = vaga.candidatos.reduce(
+          (textoFinal, vaga) => textoFinal + "\n - " + vaga,
+          ""
+        );
 
-  alert(
-    "Vaga nº " +
-      entrada_usuario_indice +
-      "\nNome: " +
-      vaga.nome +
-      "\nDescrição: " +
-      vaga.descricao +
-      "\nData limite: " +
-      vaga.dataLimite +
-      "\nQuantidade de candidatos: " +
-      vaga.candidatos.length +
-      "\nCandidatos inscritos:" +
-      vagaEmTexto
-  );
+        alert(
+          "Vaga nº " +
+            entrada_usuario_indice +
+            "\nNome: " +
+            vaga.nome +
+            "\nDescrição: " +
+            vaga.descricao +
+            "\nData limite: " +
+            vaga.dataLimite +
+            "\nQuantidade de candidatos: " +
+            vaga.candidatos.length +
+            "\nCandidatos inscritos:" +
+            vagaEmTexto
+        );
+      } else alert("Vaga não encontrada!");
+    });
+  }
 }
-
 // OPT 4
 // Inscrever um candidato em uma vaga:
 // A opção de inscrever um candidato em uma vaga deve pedir o nome do candidato, o índice da vaga e
@@ -153,32 +148,31 @@ function excluirVaga() {
 // OPT 6
 // A opção liberar vaga tira os candidatos da vaga para que ela seja liberada para manutenção
 function liberarVaga() {
-  const checkData = vagas.forEach((vaga) => {
-    if (vaga.candidatos.length > 1) {
-      return true;
-    } else return false;
-  });
+  if (vagas.length == 0) {
+    alert("Não existem vagas criadas até o momento!");
+  } else {
+    alert("Veja a seguir o número da vaga que deseja liberar:");
+    listarVagas();
+    const indice_vaga = prompt("Informe o índice da vaga:");
+    vagas.forEach((vaga, indice) => {
+      if (indice == indice_vaga) {
+        vaga.candidatos.length = 0;
 
-  if (checkData) alert("tem");
-  else alert("nao tem");
-  /*
-  alert("Veja a seguir o número da vaga que deseja cadastrar um candidato.");
-  listarVagas();
-  const indice_vaga = prompt("Informe o índice da vaga:");
-  vagas.forEach((vaga, indice) => {
-    if (indice == indice_vaga) {
-      if (vaga.candidatos.length > 0) {
-        const confirmacao = confirm(
-          "Confirma a liberação da vaga " + vaga.nome + "?"
+        alert(
+          "Vaga nº " +
+            indice +
+            "\nNome: " +
+            vaga.nome +
+            "\nDescrição: " +
+            vaga.descricao +
+            "\nData limite: " +
+            vaga.dataLimite +
+            "\nQuantidade de candidatos: " +
+            vaga.candidatos.length
         );
-
-        if (confirmacao) {
-          // vaga.candidatos.shift(0, vaga.candidatos.length);
-          exibirVaga(indice_vaga);
-        }
-      } else alert("A vaga não possui inscrições!");
-    }
-  });*/
+      }
+    });
+  }
 }
 
 // *******************************************************
