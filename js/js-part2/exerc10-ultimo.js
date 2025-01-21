@@ -41,6 +41,7 @@ function criarCandidato() {
   listarVagas();
   const indice_vaga = prompt("Informe o índice da vaga:");
 
+  vagas[("A", "B", "C")];
   vagas.forEach((vaga, indice) => {
     if (indice == indice_vaga) {
       const nomeCandidato = prompt("Digite o nome do candidato:");
