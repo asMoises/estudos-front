@@ -154,6 +154,19 @@ buttonSave.addEventListener("click", () => {
     };
   });
 
-  // Teste: Exibir os jogadores no console
-  console.log("Jogadores escalados:", jogadores);
+  const ul = document.getElementById("result-list");
+  console.log(ul);
+
+  jogadores.forEach((e) => {
+    const liNome = document.createElement("li");
+    const liPosicao = document.createElement("li");
+    const liNumero = document.createElement("li");
+    const linha = document.createElement("hr");
+
+    liNome.textContent = e.nome;
+    liPosicao.textContent = e.posicao;
+    liNumero.textContent = e.numero;
+
+    ul.append(liNome, liNumero, liPosicao, linha);
+  });
 });
