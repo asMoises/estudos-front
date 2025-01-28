@@ -12,8 +12,83 @@
       <h1 class="title">Seleção de Jogadores</h1>
       <hr />
       <section class="jogadores">
-        <h2 id="jogador-item">Selecione os jogadores:</h2>
+        <h3 id="jogador-item">Selecione os jogadores:</h3>
+        <fieldset class="inputs-check">
+          <legend>Jogadores:</legend>
+          <div class="checkbox-grid">
+            <div class="divs-input">
+              <input type="checkbox" id="goleiro" name="goleiro" checked />
+              <label for="goleiro">Goleiro</label>
+            </div>
+            <div class="divs-input">
+              <input type="checkbox" id="zagueiro" name="zagueiro" />
+              <label for="zagueiro">Zagueiro</label>
+            </div>
+            <div class="divs-input">
+              <input type="checkbox" id="libero" name="libero" />
+              <label for="libero">Líbero</label>
+            </div>
+            <div class="divs-input">
+              <input type="checkbox" id="lateral" name="lateral" />
+              <label for="lateral">Lateral</label>
+            </div>
+            <div class="divs-input">
+              <input type="checkbox" id="volante" name="volante" />
+              <label for="volante">Volante</label>
+            </div>
+            <div class="divs-input">
+              <input type="checkbox" id="ala" name="ala" />
+              <label for="ala">Ala</label>
+            </div>
+            <div class="divs-input">
+              <input
+                type="checkbox"
+                id="meia-contencao"
+                name="meia-contencao"
+              />
+              <label for="meia-contencao">Meia de contenção</label>
+            </div>
+            <div class="divs-input">
+              <input type="checkbox" id="meia-armacao" name="meia-armacao" />
+              <label for="meia-armacao">Meia de armação</label>
+            </div>
+            <div class="divs-input">
+              <input type="checkbox" id="meia-atacante" name="meia-atacante" />
+              <label for="meia-atacante">Meia atacante</label>
+            </div>
+            <div class="divs-input">
+              <input
+                type="checkbox"
+                id="atacante-recuado"
+                name="atacante-recuado"
+              />
+              <label for="atacante-recuado">Atacante recuado</label>
+            </div>
+            <div class="divs-input">
+              <input
+                type="checkbox"
+                id="atacante-beirada"
+                name="atacante-beirada"
+              />
+              <label for="atacante-beirada">Atacante de beirada</label>
+            </div>
+            <div class="divs-input">
+              <input type="checkbox" id="atacante-area" name="atacante-area" />
+              <label for="atacante-area">Atacante de área</label>
+            </div>
+            <!-- Botão para capturar os valores -->
+            <button id="button-pegar-posicao" onclick="pegarPosicao()">
+              Avançar para Escalação
+            </button>
+          </div>
+        </fieldset>
       </section>
+      <section>
+        <ul id="input-list"></ul>
+      </section>
+      <section id="saveButton"></section>
+      <br />
+      <hr />
     </main>
     <footer></footer>
   </body>

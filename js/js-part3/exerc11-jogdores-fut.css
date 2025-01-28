@@ -7,8 +7,64 @@
   padding: 0;
 }
 
-h1 {
-  margin-top: 4rem;
-  padding: 2rem;
+.title {
   text-align: center;
+  margin: 20px 0;
+}
+
+.jogadores {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.inputs-check {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.divs-input {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.input-list {
+  display: flex;
+  align-items: center;
+}
+
+label {
+  font-size: 14px;
+}
+/* Estilo para o botão com ID "button-pegar-posicao" */
+#button-pegar-posicao {
+  background-color: #23b5e6; /* Fundo azul claro */
+  border: none; /* Remove borda padrão */
+  border-radius: 12px; /* Bordas arredondadas */
+  padding: 10px 20px; /* Espaçamento interno */
+  color: #fff; /* Cor do texto */
+  font-size: 16px; /* Tamanho da fonte */
+  cursor: pointer; /* Mostra o cursor "mão" ao passar sobre o botão */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transição suave */
+}
+
+/* Efeito ao passar o mouse */
+#button-pegar-posicao:hover {
+  background-color: #87cefa; /* Azul mais intenso */
+  transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
+}
+
+/* Efeito ao clicar */
+#button-pegar-posicao:active {
+  background-color: #4682b4; /* Azul escuro */
+  transform: scale(0.95); /* Reduz ligeiramente o tamanho */
 }
