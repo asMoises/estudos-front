@@ -68,3 +68,9 @@ label {
   background-color: #4682b4; /* Azul escuro */
   transform: scale(0.95); /* Reduz ligeiramente o tamanho */
 }
+
+.result-list {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}

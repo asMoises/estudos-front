@@ -111,20 +111,19 @@ function pegarPosicao() {
     newInputNC.name = "numeroInput";
     newInputNC.id = "numeroInput";
 
+    const linha = document.createElement("br");
+
     newLi.appendChild(newInput);
     newLiNC.appendChild(newInputNC);
 
-    ul.append(newLi, newLiNC);
+    //    newInput.focus();
+    ul.append(linha, newLi, newLiNC);
   });
   const sectionButton = document.getElementById("saveButton");
   sectionButton.appendChild(createSaveButton());
 }
 
 buttonSave.addEventListener("click", () => {
-  const escalar = confirm("Deseja escalar os jogadores?");
-
-  if (!escalar) return;
-
   // Recupera Nodelist dos inputs e converte para arrays
   const nameInputsArray = [
     ...document.querySelectorAll("input[name='nameInput']"),
@@ -143,6 +142,8 @@ buttonSave.addEventListener("click", () => {
     alert("Algum input está vazio!");
     return; // Sai da função se houver inputs vazios e não exibe mais nada!!!!
   }
+  const escalar = confirm("Deseja escalar os jogadores?");
+  if (!escalar) return;
 
   // Criar array para armazenar os jogadores
   const jogadores = nameInputsArray.map((nameInput, index) => {
@@ -155,17 +156,16 @@ buttonSave.addEventListener("click", () => {
   });
 
   const ul = document.getElementById("result-list");
-  console.log(ul);
 
   jogadores.forEach((e) => {
     const liNome = document.createElement("li");
     const liPosicao = document.createElement("li");
     const liNumero = document.createElement("li");
-    const linha = document.createElement("hr");
+    const linha = document.createElement("br");
 
-    liNome.textContent = e.nome;
-    liPosicao.textContent = e.posicao;
-    liNumero.textContent = e.numero;
+    liNome.textContent = "Joagdor: " + e.nome;
+    liPosicao.textContent = "Posição: " + e.posicao;
+    liNumero.textContent = "Camisa: " + e.numero;
 
     ul.append(liNome, liNumero, liPosicao, linha);
   });
