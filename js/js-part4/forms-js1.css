@@ -69,6 +69,29 @@ form input[type="checkbox"] {
 .checkbox-group {
   margin-bottom: 10px;
 }
+/* Outras estilizações permanecem... */
+
+/* Estilizando os grupos para ficarem na horizontal */
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap; /* Permite quebrar a linha se não houver espaço suficiente */
+  gap: 10px; /* Espaçamento entre os itens */
+  margin-bottom: 10px;
+}
+
+/* Opcional: centralizar verticalmente os itens, se necessário */
+.radio-item,
+.checkbox-item {
+  display: flex;
+  align-items: center;
+}
+
+/* Ajuste nos inputs e labels, se necessário */
+.radio-item input,
+.checkbox-item input {
+  margin-right: 5px;
+}
 
 /* Botão de submit */
 form button[type="submit"] {
