@@ -18,7 +18,7 @@ form.addEventListener("submit", function (ev) {
       salad += " - " + item.value + "\n";
     });
 
-  console.log({
+  console.log({ 
     name,
     address,
     breadType,
